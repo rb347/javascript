@@ -50,7 +50,6 @@ let VendingMachine = {
 }
 
 // Setup event listeners for the three buttons on the vending machine
-document.getElementById('btn_add_money').addEventListener("click", VendingMachine.add_money);
 document.getElementById('btn_get_item').addEventListener("click", VendingMachine.get_item);
 document.getElementById('btn_get_change').addEventListener("click", VendingMachine.get_change);
 
