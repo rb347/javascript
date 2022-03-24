@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<h1>Vending Machine</h1>
+<span id="vending_options" style="margin-bottom: 15px;"></span><br /><br />
+
+<div style="background-color: rgb(254, 255, 197); width: 400px; font-size: 20px;">
+Money In: <span id="money_display"></span><br />
+Change Dispenser: <span id="change_dispenser"></span><br />
+Item Dispenser: <span id="item_dispenser"></span><br />
+</div>
+<br /><br />
+
+Insert Money Here: <input type="text" id="money_in" placeholder="1.50" /> <button id="btn_add_money">Add Money</button>
+<br /><br />
+Choose an Item: <input type="text" id="item_selection" placeholder="A1" /> <button id="btn_get_item">Get Item</button>
+<br /><br />
+<button id="btn_get_change">Return Customer Change</button>
+<br />
+<br />
+<span style="color: red" id="vending_message"></span>
+
+<script type="text/javascript" src="VendingMachine.js"></script>
+</body>
+</html>
