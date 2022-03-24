@@ -1,5 +1,5 @@
 let AddressBook = {
-  book: [],
+  
   add: function(address) {
     this.book.push(address);
   },
@@ -29,5 +29,8 @@ AddressBook.add('special');
 AddressBook.add('joey');
 AddressBook.add('street address here');
 AddressBook.add('world');
+
+AddressBook.book = [];
+
 AddressBook.book.push('another');
 AddressBook.print();
