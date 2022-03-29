@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    /* Centers entire page */
+    html, body {height:100%;}
+    html {display:table; width:100%;}
+    body {display:table-cell; text-align:center; vertical-align:middle;}
+
+    .btn {
+      background-color: white; /* Green */
+      border: 2px solid black;
+      color: black;
+      padding: 15px 32px 15px 32px;
+      margin: 5px 5px 5px 5px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .blue {
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+
+<button id="1" class="btn">&nbsp;</button>
+<button id="2" class="btn">&nbsp;</button>
+<button id="3" class="btn">&nbsp;</button><br />
+<button id="4" class="btn">&nbsp;</button>
+<button id="5" class="btn">&nbsp;</button>
+<button id="6" class="btn">&nbsp;</button><br />
+<button id="7" class="btn">&nbsp;</button>
+<button id="8" class="btn">&nbsp;</button>
+<button id="9" class="btn">&nbsp;</button>
+
+
+<script>
+
+// bind onClick event listener to all buttons
+const collection = document.getElementsByClassName("btn");
+for (let i = 0; i < collection.length; i++) {
+  collection[i].addEventListener('click', setSquare);
+}
+
+let turn = 'red'; // red goes first
+let turn_symbol = 'O' // red is X
+let board = {
+  1: "",
+  2: "",
+  3: "",
+  4: "",
+  5: "",
+  6: "",
+  7: "",
+  8: "",
+  9: "",
+};
+
+function setSquare() {
+  console.log(this.id);
+  board[this.id] = turn;
+  if (turn == 'red') {
+    turn = 'blue';
+    turn_symbol = 'X';
+    this.classList.add('blue');
+  } else {
+    turn = 'red'
+    turn_symbol = 'O';
+    this.classList.add('red');
+  }
+  this.innerHTML = turn_symbol;
+  getWinner();
+}
+
+function getWinner() {
+
+}
+
+</script>
+
+
+</body>
+</html>
