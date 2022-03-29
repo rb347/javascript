@@ -24,18 +24,18 @@ let VendingMachine = {
     return dollarUSLocale.format(price);
   },
   get_item: function () {
-    let item = document.getElementById("item_selection").value;
-    for (selection in VendingMachine.items) {
-      if (selection === item) {
-        let item_name = VendingMachine.items[selection].item_name;
-        let item_price = VendingMachine.items[selection].price;
-        if (item_price <= VendingMachine.money_in) {
-          VendingMachine.money_in = VendingMachine.money_in - item_price;
-          console.log("Dispensing: " + item + ": " + item_name);
-          return;
-        } else {
-          console.log("You do not have enough money");
-          return;
+		let item = document.getElementById("item_selection").value;
+		for (selection in VendingMachine.items) {
+		if (selection === item) {
+			let item_name = VendingMachine.items[selection].item_name;
+			let item_price = VendingMachine.items[selection].price;
+			if (item_price <= VendingMachine.money_in) {
+			VendingMachine.money_in = VendingMachine.money_in - item_price;
+			console.log("Dispensing: " + item + ": " + item_name);
+			return;
+			} else {
+			console.log("You do not have enough money");
+			return;
         }
       }
     }
