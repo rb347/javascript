@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>To Do List</h1>
+
+    <div
+      style="
+        background-color: rgb(254, 255, 197);
+        width: 400px;
+        font-size: 20px;
+      "
+    >
+      List:
+      <ul id="lists_display"></ul>
+      <br />
+    </div>
+    <br /><br />
+    Search:
+    <input type="text" id="search_task" placeholder="Search for a task" />
+    <button id="btn_search">Search</button> <br /><br />
+    Add task: <input type="text" id="add_task" placeholder="New Task" />
+    <button id="btn_add_task">Add Task</button> <br /><br />
+    <br /><br />
+
+    <button id="btn_clear">Clear List</button> <br /><br />
+
+    <script>
+      const toDoList = ["go to the gym", "go to the store", "shower the dog"];
+      function add_task() {
+        let task_input = document.getElementById("add_task").value.trim();
+        let result = is_valid_task(task_input);
+        if (result === true) {
+          toDoList.push(task_input);
+          display();
+          document.getElementById("add_task").value = "";
+          document.getElementById("add_task").focus();
+          document.getElementById("add_task").select();
+        } else {
+          alert(result);
+        }
+      }
+
+      function is_valid_task(task_input) {
+        if (task_input == "") {
+          return "You have to write something..";
+        }
+        let task_input_lower = task_input.toLowerCase().trim();
+        for (let task of toDoList) {
+          let task_lower = task.toLowerCase();
+          if (task_lower == task_input_lower) {
+            return "Error: Task already exists";
+          }
+        }
+        return true;
+      }
+
+      function display(keyword) {
+        let html_text = "";
+        // for (var event in toDoList) {
+        //   html_text += "<li>" + toDoList[event] + "</li>";
+        // }
+        for (var event in toDoList) {
+          if (keyword > "") {
+            if (toDoList[event].includes(keyword)) {
+              html_text += "<li>" + toDoList[event] + "</li>";
+            }
+          } else {
+            html_text += "<li>" + toDoList[event] + "</li>";
+          }
+        }
+        document.getElementById("lists_display").innerHTML = html_text;
+        document.getElementById("search_task").innerHTML = toDoList.includes();
+      }
+
+      function searchTask() {
+        let search_input = document.getElementById("search_task").value.trim();
+        display(search_input);
+      }
+
+      // function searchTask() {
+      //   let search_input = document.getElementById("search_task").value.trim();
+      //   if (search_input == "") {
+      //     return "You have to write something..";
+      //   }
+      //   let search_input_lower = search_input.toLowerCase().trim();
+      //   for (let search of toDoList) {
+      //     let search_lower = search.toLowerCase();
+      //     if (search_lower.includes(search_input_lower)) {
+      //       return true;
+      //     }
+      //   }
+      //   return true;
+      // }
+
+      display("");
+
+      document
+        .getElementById("btn_add_task")
+        .addEventListener("click", add_task);
+
+      document
+        .getElementById("btn_search")
+        .addEventListener("click", searchTask);
+
+      document
+        .getElementById("add_task")
+        .addEventListener("keyup", function (event) {
+          if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("btn_add_task").click();
+          }
+        });
+    </script>
+  </body>
+</html>
