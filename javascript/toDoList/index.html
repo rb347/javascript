@@ -30,12 +30,25 @@
     <button id="btn_clear">Clear List</button> <br /><br />
 
     <script>
-      const toDoList = ["go to the gym", "go to the store", "shower the dog"];
-      function add_task() {
+      let toDoList = JSON.parse(localStorage.getItem("todolist_data")); // get
+      if (!toDoList) {
+        // if the list is empty, use a default list
+        toDoList = ["Go to the gym"];
+      }
+      save();
+
+      //let toDoList = ["Go to the gym", "Shower the dog"];
+
+      function save() {
+        localStorage.setItem("todolist_data", JSON.stringify(toDoList)); // save
+      }
+
+      function addTask() {
         let task_input = document.getElementById("add_task").value.trim();
         let result = is_valid_task(task_input);
         if (result === true) {
           toDoList.push(task_input);
+          save();
           display();
           document.getElementById("add_task").value = "";
           document.getElementById("add_task").focus();
@@ -67,10 +80,20 @@
         for (var event in toDoList) {
           if (keyword > "") {
             if (toDoList[event].includes(keyword)) {
-              html_text += "<li>" + toDoList[event] + "</li>";
+              html_text +=
+                "<li>" +
+                toDoList[event] +
+                " <small><a href='' onclick='return deleteTask(" +
+                event +
+                ");'>x</a></small></li>";
             }
           } else {
-            html_text += "<li>" + toDoList[event] + "</li>";
+            html_text +=
+              "<li>" +
+              toDoList[event] +
+              " <small><a href='' onclick='return deleteTask(" +
+              event +
+              ");'>x</a></small></small></li>";
           }
         }
         document.getElementById("lists_display").innerHTML = html_text;
@@ -97,15 +120,31 @@
       //   return true;
       // }
 
+      function clearList() {
+        toDoList = [];
+        save();
+        display("");
+      }
+
+      function deleteTask(key) {
+        //alert("test: " + key);
+        toDoList.splice(key, 1);
+        save();
+        display("");
+        return false;
+      }
+
       display("");
 
       document
         .getElementById("btn_add_task")
-        .addEventListener("click", add_task);
+        .addEventListener("click", addTask);
 
       document
         .getElementById("btn_search")
         .addEventListener("click", searchTask);
+
+      document.getElementById("btn_clear").addEventListener("click", clearList);
 
       document
         .getElementById("add_task")
