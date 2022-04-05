@@ -6,7 +6,7 @@ let VendingMachine = {
     A1: { item_name: "Fruit Loops", price: 3.5, quantity: 10 },
     A2: { item_name: "Yogurt", price: 1.5, quantity: 10 },
     A3: { item_name: "Snickers", price: 1.75, quantity: 10 },
-    B1: { item_name: "M&M's", price: 0.25, quantity: 10 },
+    B1: { item_name: "M&M's", price: 0.25, quantity: 3 },
     B2: { item_name: "Bubble Gum", price: 0.5, quantity: 10 },
     B3: { item_name: "Orange", price: 1.15, quantity: 10 },
     C1: { item_name: "Reeses Pieces", price: 1.0, quantity: 10 },
@@ -23,38 +23,41 @@ let VendingMachine = {
     });
     return dollarUSLocale.format(price);
   },
-  check_inventory: function(){
+  check_inventory: function () {
     let item = document.getElementById("item_selection").value;
-		for (selection in VendingMachine.items) {
+    for (selection in VendingMachine.items) {
       if (selection === item) {
         let item_quantity = VendingMachine.items[selection].quantity;
-        if (item_quantity >= 1){
+        if (item_quantity >= 1) {
           return true;
         } else {
           return false;
         }
-    
       }
     }
   },
   get_item: function () {
-		let item = document.getElementById("item_selection").value;
-		for (selection in VendingMachine.items) {
-		if (selection === item) {
-			let item_name = VendingMachine.items[selection].item_name;
-			let item_price = VendingMachine.items[selection].price;
-			if (item_price <= VendingMachine.money_in) {
-			VendingMachine.money_in = VendingMachine.money_in - item_price;
-			console.log("Dispensing: " + item + ": " + item_name);
-			return;
-			} else {
-			console.log("You do not have enough money");
-			return;
+    let item = document.getElementById("item_selection").value;
+    for (selection in VendingMachine.items) {
+      if (selection === item) {
+        let item_name = VendingMachine.items[selection].item_name;
+        let item_price = VendingMachine.items[selection].price;
+        if (item_price <= VendingMachine.money_in) {
+          if (VendingMachine.check_inventory() === true) {
+            VendingMachine.money_in = VendingMachine.money_in - item_price;
+            console.log("Dispensing: " + item + ": " + item_name);
+            VendingMachine.items[selection].quantity--;
+            return;
+          } else {
+            console.log("Item does not exist");
+            return;
+          }
+        } else {
+          console.log("You do not have enough money");
+          return;
         }
       }
-      this.check_inventory()
     }
-    console.log("Item does not exist");
   },
   get_change: function () {
     document.getElementById("change_dispenser").innerHTML =
@@ -101,13 +104,14 @@ document
     if (event.keyCode === 13) {
       event.preventDefault();
       document.getElementById("btn_get_item").click();
-
-document
-  .getElementById("money_in")
-  .addEventListener("keyup", function (event) {
-      if (event.keyCode === 13) {
-        event.preventDefault();
-        document.getElementById("btn_add_money").click();
+    }
+  });
+document.getElementById("money_in").addEventListener("keyup", function (event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("btn_add_money").click();
+  }
+});
 
 // display the items
 VendingMachine.display_items();
