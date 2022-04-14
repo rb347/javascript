@@ -2,10 +2,10 @@ let DMCalc = {
   // properties
   scholar_share: 0,
   scholar_win_rate: 0,
-  current_totem_price_usd: 0,
-  current_totem_price_php: 0,
-  Number_days_palyed: 0,
-  Number_matches_per_day: 0,
+  current_totem_price_usd: .64,
+  current_totem_price_php: 3.33,
+  Number_days_palyed: 7,
+  Number_matches_per_day: 40,
 
   // get user input from form fields
   setScholarShare: function() {
@@ -34,7 +34,9 @@ let DMCalc = {
     this.setScholarWinRate();
     this.setCurrentTotemPriceUSD();
     this.setCurrentTotemPricePHP();
-
+    this.setNumberDaysPlayed();
+    this.setNumberMatchesPerDay();
+    
     this.display();
   },
 
