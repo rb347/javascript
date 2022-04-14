@@ -6,8 +6,9 @@ let DMCalc = {
   current_totem_price_php: 3.33,
   Number_days_palyed: 7,
   Number_matches_per_day: 40,
+  Game_percentage: .03,
 
-  // get user input from form fields
+    // get user input from form fields
   setScholarShare: function() {
     this.scholar_share = jQuery('#share').val();
   },
@@ -36,7 +37,7 @@ let DMCalc = {
     this.setCurrentTotemPricePHP();
     this.setNumberDaysPlayed();
     this.setNumberMatchesPerDay();
-    
+
     this.display();
   },
 
