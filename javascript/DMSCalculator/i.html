@@ -6,18 +6,27 @@
   <title>Document</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="slider.css">
 
 </head>
 <body>
 
 
   <div class="container-sm" style="width: 800px">
+    <div class="row">
+      <div class="slidecontainer">
+        <input type="range" min="0" max="100" value="15" class="slider" id="slider_scholar_share">
+      </div>
+      <div class="slidecontainer">
+        <input type="range" min="0" max="100" value="50" class="slider" id="slider_win_rate">
+      </div>
+    </div>
 
     <div class="row">
       <div class="table-responsive">
           <table class="table">
               <tr></tr><td>Scholar Share %</td><td><input type="text" value=".5" id="share" /></td></tr>
-              <tr></tr><td>Scholar Win Rate</td><td><input type="text" value=".5" id="win_rate" /></td></tr>
+              <tr></tr><td>Scholar Win Rate</td><td><input type="text" value=".57" id="win_rate" /></td></tr>
               <tr></tr><td>Current TOTEM Price (USD)</td><td><input type="text" value=".5" id="TOTEMusd" /></td></tr>
               <tr></tr><td>Current TOTEM Price (PHP)</td><td><input type="text" value=".5" id="TOTEMphp" /></td></tr>
           </table>
@@ -32,8 +41,8 @@
               <td># Matches Per Day</td>
             </tr>
             <tr>
-              <td><input type="text" value=".5" id="days_played" /></td>
-              <td><input type="text" value=".5" id="matches_per_day" /></td>
+              <td><input type="text" value="7" id="days_played" /></td>
+              <td><input type="text" value="30" id="matches_per_day" /></td>
             </tr>
           </table>
         </div>
@@ -45,7 +54,7 @@
             <tr><td>Scholar %</td><td><span id="form_scholar_share">TBD</span></td></tr>
             <tr><td>Win Rate</td><td><span id="form_scholar_win_rate">TBD</span></td></tr>
             <tr><td>Game %</td><td>3%</td></tr>
-            <tr><td>Guild %</td><td>98%</td></tr>
+            <tr><td>Guild %</td><td><span id="form_guild_percentage">98%</span></td></tr>
           </table>
         </div>
       </div>
@@ -60,33 +69,23 @@
             </tr>
 
             <tr>
-              <td>Total Matches Played</td>
-              <td>38</td>
-              <td></td>
+              <td>Total Matches Played</td><td><span id="form_total_matches_played">38</span></td><td></td>
             </tr>
 
             <tr>
-              <td># Won</td>
-              <td>38</td>
-              <td class="text-white bg-primary">100</td>
+              <td># Won</td><td><span id="form_won">38</span></td> <td class="text-white bg-primary">100</td>
             </tr>
 
             <tr>
-              <td># Lost</td>
-              <td>38</td>
-              <td></td>
+              <td># Lost</td><td><span id="form_lost">38</span></td><td></td>
             </tr>
 
             <tr>
-              <td>Daily Task Reward (Scholar)</td>
-              <td>38</td>
-              <td></td>
+              <td>Daily Task Reward (Scholar)</td><td><span id="form_task_reward_scholar">30</span></td><td></td>
             </tr>
 
             <tr>
-              <td>Total In game TOTEM Earned</td>
-              <td>38</td>
-              <td></td>
+              <td>Total In game TOTEM Earned</td><td><span id="form_total_in_game_TOTEM_earned">38</span></td><td></td>
             </tr>
 
           </table>
@@ -97,31 +96,9 @@
       <div class="row">
         <div class="col">
           <table class="table">
-            <tr>
-              <td>Durability Cost:</td>
-              <td>NET TOTEM Earned For Guild</td>
-              <td>TOTEM Earned For Scholar</td>
-            </tr>
-            <tr>
-              <td>-76</td>
-              <td>124</td>
-              <td>32</td>
-            </tr>
-            <tr>
-              <td>Actual %</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>USD</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>PHP</td>
-              <td></td>
-              <td></td>
-            </tr>
+            <tr><td>Durability Cost:</td><td><span id="form_durability_cost">-76</span></td><td>Actual %</td><td>USD</td><td>PHP</td></tr>
+            <tr><td>NET TOTEM Earned For Guild</td><td><span id="form_NET_TOTEM_earned_for_guild">124</span></td><td></td><td></td><td></td></tr>
+            <tr><td>TOTEM Earned For Scholar</td><td><span id="form_TOTEM_earned_for_scholar">32</span></td><td></td><td></td><td></td></tr>
           </table>
         </div>
       </div>
@@ -130,7 +107,7 @@
         <div class="col">
           <table class="table">
             <tr>
-              <td>NET TOTEM Earned Per Day For Guild</td>
+              <td>NET TOTEM Earned Per Day For Guild</td><td><span id="form_NET_TOTEM_earned_per_day_for_guild">0</span></td>
             </tr>
             <tr>
               <td></td>
