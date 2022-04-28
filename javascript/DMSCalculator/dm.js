@@ -62,7 +62,6 @@ let DMCalc = {
 DMCalc.run();
 
 
-// Add Event Listeners to all input fields
 jQuery( "input" ).change( function() {
   DMCalc.run();
 });
